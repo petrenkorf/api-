@@ -6,18 +6,25 @@ RSpec.describe 'Products', type: :request do
   let(:json_response) { JSON.parse(response.body) }
 
   describe 'GET /products' do
-    before(:each) { get '/products' }
+    context 'when there are no products' do
+      before(:each) { get '/products' }
 
-    it { expect(response).to have_http_status(:success) }
-    it { expect(json_response).to have_key('products') }
-    it { expect(json_response['products']).to be_empty }
+      it { expect(response).to have_http_status(:success) }
+      it { expect(json_response).to have_key('products') }
+      it { expect(json_response['products']).to be_empty }
+    end
 
     context 'when product is stored' do
-      before { Product.create(name: 'Product', description: 'Description') }
+      before(:each) do
+        create :product
+        get '/products'
+      end
 
       it { expect(response).to have_http_status(:success) }
       it { expect(json_response).to have_key('products') }
       it { expect(json_response['products']).not_to be_empty }
+      it { expect(json_response['products'].first['name']).to eq 'Product' }
+      it { expect(json_response['products'].first['description']).to eq 'Product description' }
     end
   end
 
