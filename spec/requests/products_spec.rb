@@ -29,9 +29,29 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'POST /create' do
-    it 'returns http success' do
-      post '/products'
-      expect(response).to have_http_status(:success)
+    before(:each) { post '/products', params: }
+    let(:name) { 'Product' }
+    let(:description) { 'Product description' }
+    let(:params) do
+      {
+        product: {
+          name: name,
+          description: description
+        }
+      }
+    end
+
+    context 'with valid input' do
+      it { expect(response).to have_http_status(:success) }
+      it { expect(json_response['product']['name']).to eq 'Product' }
+      it { expect(json_response['product']['description']).to eq 'Product description' }
+    end
+
+    context 'with invalid input' do
+      let(:name) { 'Product' * 1000 }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(json_response["errors"]["name"].first).to eq "is too long (maximum is 100 characters)" }
     end
   end
 
