@@ -35,8 +35,8 @@ RSpec.describe 'Products', type: :request do
     let(:params) do
       {
         product: {
-          name: name,
-          description: description
+          name:,
+          description:
         }
       }
     end
@@ -51,7 +51,7 @@ RSpec.describe 'Products', type: :request do
       let(:name) { 'Product' * 1000 }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
-      it { expect(json_response["errors"]["name"].first).to eq "is too long (maximum is 100 characters)" }
+      it { expect(json_response['errors']['name'].first).to eq 'is too long (maximum is 100 characters)' }
     end
   end
 

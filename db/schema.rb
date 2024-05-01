@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_151336) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_010503) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "pos_code"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_151336) do
     t.datetime "disabled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_products_on_discarded_at"
   end
 
   create_table "steps", force: :cascade do |t|

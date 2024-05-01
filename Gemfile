@@ -49,3 +49,5 @@ group :development do
 end
 
 gem "factory_bot_rails", "~> 6.4"
+
+gem "discard", "~> 1.3"
