@@ -63,9 +63,18 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'returns http success' do
-      delete '/products/1'
-      expect(response).to have_http_status(:success)
+    context 'when product exists' do
+      let(:existent_product) { create(:product) }
+      before(:each) { delete "/products/#{existent_product.id}" }
+
+      it { expect(response).to have_http_status(:success) }
+      it { expect(existent_product).to be_discarded }
+    end
+
+    context 'when product does not exists' do
+      before(:each) { delete "/products/1542" }
+
+      it { expect(response).to have_http_status(:not_found) }
     end
   end
 end
