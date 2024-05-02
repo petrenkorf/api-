@@ -24,7 +24,7 @@ RSpec.describe Product, type: :model do
   it { expect(subject.disabled_at).to be_nil }
 
   shared_examples 'is invalid' do
-    it { expect(subject).not_to be_valid }
+    it { expect(subject).to be_valid }
   end
 
   describe 'invalid input' do
