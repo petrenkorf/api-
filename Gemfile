@@ -48,6 +48,7 @@ group :test do
   gem 'database_cleaner'
   gem 'simplecov', require: false
   gem 'rubocop-performance', require: false
+  gem 'rubocop-rake', require: false
 end
 
 group :development do
