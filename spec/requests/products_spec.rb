@@ -68,7 +68,7 @@ RSpec.describe 'Products', type: :request do
       before(:each) { delete "/products/#{existent_product.id}" }
 
       it { expect(response).to have_http_status(:success) }
-      it { expect(existent_product).to be_discarded }
+      it { expect(existent_product.reload).to be_discarded }
     end
 
     context 'when product does not exists' do

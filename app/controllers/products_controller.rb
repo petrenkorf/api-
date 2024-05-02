@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product = Product.find_by_id(params[:id])
-      @product.discard
+      @product.discard!
       render json: { product: @product }, status: :ok
     else
       render json: {}, status: :not_found
