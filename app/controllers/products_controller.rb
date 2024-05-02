@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
     @products = Product.kept
@@ -13,11 +15,10 @@ class ProductsController < ApplicationController
     render json: { product: @product }, status: :ok
   end
 
-  def update
-  end
+  def update; end
 
   def destroy
-    if @product = Product.find_by_id(params[:id])
+    if (@product = Product.find_by_id(params[:id]))
       @product.discard!
       render json: { product: @product }, status: :ok
     else
@@ -28,7 +29,7 @@ class ProductsController < ApplicationController
   private
 
   def product_error
-    render json: {errors: @product.errors }, status: :unprocessable_entity
+    render json: { errors: @product.errors }, status: :unprocessable_entity
   end
 
   def product_params
