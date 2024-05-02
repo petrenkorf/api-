@@ -49,6 +49,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
