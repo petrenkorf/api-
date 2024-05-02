@@ -31,7 +31,7 @@ RSpec.describe Product, type: :model do
     context 'when name above 100 characters length' do
       let(:name) { 'abc' * 1000 }
 
-      it { expect(subject).to be_valid }
+      it { expect(subject).not_to be_valid }
     end
 
     context 'pos_code exists in database' do
