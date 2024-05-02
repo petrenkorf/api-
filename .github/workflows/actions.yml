@@ -11,7 +11,6 @@ jobs:
         with:
           ruby-version: '3.1.2'
           bundler-cache: true
-      - run: bundle install --quiet
       - run: bundle exec rubocop
       - run: bundle exec rspec
       - run: bundle exec cucumber --publish-quiet --format=progress
