@@ -46,3 +46,9 @@ Then(/^(.*) key should be empty$/) do |key|
 
   expect(field).to be_empty
 end
+
+Then(/^(.*) key should not be empty$/) do |key|
+  field = JSON.parse(last_response.body)[key]
+
+  expect(field).not_to be_empty
+end

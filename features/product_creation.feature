@@ -20,6 +20,13 @@ Feature: Create Product
     And JSON response should have the key products
     And products key should be empty
 
+  Scenario: Products are listed
+    Given There is a product stored
+    And I visit /products
+    Then I should have a successful response
+    And I should receive a json response
+    And JSON response should have the key products
+    And products key should not be empty
 
   Scenario: Create Valid Product
     When I send data to product endpoint
