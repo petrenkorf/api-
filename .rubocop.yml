@@ -3,6 +3,7 @@ require:
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - vendor/**/*.rb
 
 Documentation:
   Enabled: false
