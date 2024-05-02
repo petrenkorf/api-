@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
+Given('There is a product stored') do
+  Product.create!(name: 'product', description: 'description')
+end
+
 Given('There are no products stored') do
   Product.delete_all
+end
+
+When('I delete the product') do
+  Product.last.discard!
 end
 
 When('I send data to product endpoint') do

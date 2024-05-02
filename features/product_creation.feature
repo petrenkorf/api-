@@ -11,6 +11,15 @@ Feature: Create Product
     And JSON response should have the key products
     And products key should be empty
 
+  Scenario: Deleted products are not listed
+    Given There is a product stored
+    When I delete the product
+    And I visit /products
+    Then I should have a successful response
+    And I should receive a json response
+    And JSON response should have the key products
+    And products key should be empty
+
 
   Scenario: Create Valid Product
     When I send data to product endpoint
