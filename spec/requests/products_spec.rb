@@ -72,7 +72,7 @@ RSpec.describe 'Products', type: :request do
     end
 
     context 'when product does not exists' do
-      before(:each) { delete "/products/1542" }
+      before(:each) { delete '/products/1542' }
 
       it { expect(response).to have_http_status(:not_found) }
     end

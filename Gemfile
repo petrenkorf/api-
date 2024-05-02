@@ -51,6 +51,7 @@ group :development do
   # gem "spring"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "rubocop"
 end
 
 gem "factory_bot_rails", "~> 6.4"
