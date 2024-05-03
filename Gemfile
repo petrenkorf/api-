@@ -46,17 +46,13 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'simplecov', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
-#  gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
   gem 'rubocop'
 end
 
