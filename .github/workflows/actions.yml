@@ -2,7 +2,8 @@ name: Workflow
 run-name: ${{ github.ref_name }} by ${{ github.actor }}
 on: [push]
 jobs:
-  Tests:
+  Linter:
+    name: linter
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -12,5 +13,27 @@ jobs:
           ruby-version: '3.1.2'
           bundler-cache: true
       - run: bundle exec rubocop
+  RSpec:
+    name: unit-test
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+          bundler-cache: true
       - run: bundle exec rspec
+  Cucumber:
+    name: integration-test
+    needs: linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+          bundler-cache: true
       - run: bundle exec cucumber --publish-quiet --format=progress
