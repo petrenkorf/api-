@@ -20,6 +20,11 @@ When(/^I visit (.*)$/) do |uri|
   get uri
 end
 
+When(/^I update existent product$/) do
+  product = Product.last
+  put "/products/#{product.id}", { product: { name: 'updated product', description: 'updated description' } }
+end
+
 Then('I should have a successful response') do
   expect(last_response.status).to eq(200)
 end
@@ -34,11 +39,10 @@ Then(/^JSON response should have the key (.*)$/) do |key|
   expect(json_response).to have_key key
 end
 
-Then('Product data should be in response') do
+Then(/^Product attribute (.*) should be (.*)$/) do |attr, val|
   product = JSON.parse(last_response.body)['product']
 
-  expect(product['name']).to eq 'product'
-  expect(product['description']).to eq 'description'
+  expect(product[attr]).to eq val
 end
 
 Then(/^(.*) key should be empty$/) do |key|

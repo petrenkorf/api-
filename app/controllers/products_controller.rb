@@ -15,7 +15,12 @@ class ProductsController < ApplicationController
     render json: { product: @product }, status: :ok
   end
 
-  def update; end
+  def update
+    @product = Product.find_by_id(params[:id])
+    @product.update(product_params)
+
+    render json: { product: @product }, status: :ok
+  end
 
   def destroy
     if (@product = Product.find_by_id(params[:id]))

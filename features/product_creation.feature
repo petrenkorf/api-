@@ -28,8 +28,18 @@ Feature: Create Product
     And JSON response should have the key products
     And products key should not be empty
 
-  Scenario: Create Valid Product
+  Scenario: Create product with valid input
     When I send data to product endpoint
     Then I should have a successful response
     And I should receive a json response
-    And Product data should be in response
+    And Product attribute name should be product
+    And Product attribute description should be description
+
+  Scenario: Update product with valid input
+    Given There is a product stored
+    When I update existent product
+    Then I should have a successful response
+    And I should receive a json response
+    And Product attribute name should be updated product
+    And Product attribute description should be updated description
+
