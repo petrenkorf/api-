@@ -25,8 +25,19 @@ When(/^I update existent product$/) do
   put "/products/#{product.id}", { product: { name: 'updated product', description: 'updated description' } }
 end
 
+When(/^I update existent product with$/) do |table|
+  product = Product.last
+  table.hashes.each do |input|
+    put "/products/#{product.id}", { product: input.compact }
+  end
+end
+
 Then('I should have a successful response') do
   expect(last_response.status).to eq(200)
+end
+
+Then(/^I should have a response with (.*) status code$/) do |status_code|
+  expect(last_response.status).to eq(status_code.to_i)
 end
 
 Then('I should receive a json response') do

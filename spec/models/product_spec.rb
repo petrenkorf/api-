@@ -33,6 +33,12 @@ RSpec.describe Product, type: :model do
 
       it { expect(subject).not_to be_valid }
     end
+    
+    context 'when name below 1 characters length' do
+      let(:name) { '' }
+
+      it { expect(subject).not_to be_valid }
+    end
 
     context 'pos_code exists in database' do
       before { described_class.create(params) }

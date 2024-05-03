@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
     @product = Product.find_by_id(params[:id])
     @product.update(product_params)
 
+    return product_error if @product.invalid?
+
     render json: { product: @product }, status: :ok
   end
 
