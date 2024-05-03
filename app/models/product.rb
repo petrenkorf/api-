@@ -11,6 +11,6 @@ class Product < ApplicationRecord
   def something
     a = 1
     b = 1
-    b+a
+    b + a
   end
 end
