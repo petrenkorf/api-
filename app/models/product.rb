@@ -7,10 +7,4 @@ class Product < ApplicationRecord
   validates :name, length: { maximum: 100 }
 
   def disabled? = disabled_at.present?
-
-  def something
-    a = 1
-    b = 1
-    b + a
-  end
 end
