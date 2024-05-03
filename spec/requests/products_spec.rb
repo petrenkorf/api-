@@ -55,11 +55,25 @@ RSpec.describe 'Products', type: :request do
     end
   end
 
-  describe 'GET /update' do
-    it 'returns http success' do
-      put '/products/1'
-      expect(response).to have_http_status(:success)
+  describe 'PUT /update' do
+    let(:name) { 'updated product' }
+    let(:description) { 'updated description' }
+    let(:existent_product) { create :product }
+    let(:params) do
+      {
+        id: existent_product,
+        product: {
+          name:,
+          description:
+        }
+      }
     end
+
+    before(:each) { patch "/products/#{existent_product.id}", params: }
+
+    it { expect(response).to have_http_status(:success) }
+    it { expect(json_response['product']['name']).to eq 'updated product' }
+    it { expect(json_response['product']['description']).to eq 'updated description' }
   end
 
   describe 'DELETE /destroy' do

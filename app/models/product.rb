@@ -7,4 +7,8 @@ class Product < ApplicationRecord
   validates :name, length: { maximum: 100 }
 
   def disabled? = disabled_at.present?
+
+  def something
+    pp teste
+  end
 end

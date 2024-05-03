@@ -42,4 +42,3 @@ Feature: Create Product
     And I should receive a json response
     And Product attribute name should be updated product
     And Product attribute description should be updated description
-
