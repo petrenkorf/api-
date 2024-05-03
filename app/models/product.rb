@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   def disabled? = disabled_at.present?
 
   def something
-    pp teste
+    a = 1
+    b = 1
+    b+a
   end
 end
